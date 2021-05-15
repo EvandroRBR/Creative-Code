@@ -7,18 +7,26 @@ import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];
 
-  async create(userData: ICreateUserDTO): Promise<User> {
+  async create({
+    name,
+    email,
+    password,
+    cpf,
+    age,
+    weight,
+    ethnicity,
+  }: ICreateUserDTO): Promise<User> {
     const user = new User();
 
     Object.assign(user, {
       id: uuid(),
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
-      cpf: userData.cpf,
-      age: userData.age,
-      weight: userData.weight,
-      ethnicity: userData.ethnicity,
+      name,
+      email,
+      password,
+      cpf,
+      age,
+      weight,
+      ethnicity,
     });
 
     this.users.push(user);
