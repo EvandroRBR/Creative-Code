@@ -17,7 +17,6 @@ export default class CreateUsers1621077759316 implements MigrationInterface {
           {
             name: 'name',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'email',
@@ -27,7 +26,6 @@ export default class CreateUsers1621077759316 implements MigrationInterface {
           {
             name: 'password',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'cpf',
@@ -37,17 +35,14 @@ export default class CreateUsers1621077759316 implements MigrationInterface {
           {
             name: 'age',
             type: 'int',
-            isUnique: true,
           },
           {
             name: 'weight',
             type: 'float',
-            isUnique: true,
           },
           {
             name: 'ethnicity',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'created_at',
