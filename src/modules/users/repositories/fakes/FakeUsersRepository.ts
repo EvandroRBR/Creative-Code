@@ -34,6 +34,10 @@ class FakeUsersRepository implements IUsersRepository {
     return user;
   }
 
+  async findAll(): Promise<User[]> {
+    return this.users;
+  }
+
   async findByEmail(email: string): Promise<User | undefined> {
     return this.users.find(user => user.email === email);
   }
