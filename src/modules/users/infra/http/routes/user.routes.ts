@@ -27,6 +27,16 @@ usersRouter.post(
 
 usersRouter.use(ensuredAuthenticated);
 
+usersRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  usersController.show,
+);
+
 usersRouter.get('/', usersController.index);
 
 export default usersRouter;
