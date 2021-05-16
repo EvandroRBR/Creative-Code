@@ -6,6 +6,7 @@ import CreateUserService from '@modules/users/services/CreateUserService';
 import ListUsersService from '@modules/users/services/ListUsersService';
 import ShowUserService from '@modules/users/services/ShowUserService';
 import UpdateUserService from '@modules/users/services/UpdateUserService';
+import DeleteUserService from '@modules/users/services/DeleteUserService';
 
 export default class UsersController {
   public async show(request: Request, response: Response): Promise<Response> {
@@ -47,5 +48,15 @@ export default class UsersController {
     const user = await updateUser.execute(userData);
 
     return response.json(user);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const userId = request.user.id;
+
+    const deleteUser = container.resolve(DeleteUserService);
+
+    await deleteUser.execute(userId);
+
+    return response.json({ message: 'Your account was deleted.' });
   }
 }

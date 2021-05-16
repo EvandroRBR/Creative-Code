@@ -64,4 +64,6 @@ usersRouter.put(
   usersController.update,
 );
 
+usersRouter.delete('/', usersController.delete);
+
 export default usersRouter;
