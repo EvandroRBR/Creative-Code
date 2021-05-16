@@ -1,4 +1,5 @@
 import User from '@modules/users/infra/typeorm/entities/User';
+
 import {
   Entity,
   Column,
@@ -9,7 +10,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-@Entity('adresses')
+@Entity('addresses')
 class Address {
   @PrimaryGeneratedColumn('uuid')
   id: string;

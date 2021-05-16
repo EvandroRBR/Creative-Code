@@ -26,10 +26,11 @@ app.use(
         message: err.message,
       });
     }
+    console.error(err);
 
     return response.status(500).json({
       status: 'error',
-      message: `Internal Server Error ${err.message}`,
+      message: 'Internal Server Error',
     });
   },
 );

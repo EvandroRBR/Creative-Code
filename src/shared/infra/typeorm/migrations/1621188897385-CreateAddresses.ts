@@ -17,6 +17,7 @@ export default class CreateAddresses1621188897385
           {
             name: 'user_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'street',
@@ -33,7 +34,6 @@ export default class CreateAddresses1621188897385
           {
             name: 'cep',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'city',
