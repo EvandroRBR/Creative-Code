@@ -2,6 +2,7 @@ import IUsersRepository from '@modules/users/repositories/IUsersRpository';
 import { getRepository, Repository } from 'typeorm';
 
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
+
 import User from '../entities/User';
 
 class UsersRepository implements IUsersRepository {
@@ -39,6 +40,12 @@ class UsersRepository implements IUsersRepository {
 
   public async findByCpf(cpf: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({ where: { cpf } });
+
+    return user;
+  }
+
+  public async update(userData: User): Promise<User> {
+    const user = await this.ormRepository.save(userData);
 
     return user;
   }

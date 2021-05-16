@@ -39,4 +39,29 @@ usersRouter.get(
 
 usersRouter.get('/', usersController.index);
 
+usersRouter.put(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string(),
+      email: Joi.string().email(),
+      old_password: Joi.string(),
+      password: Joi.string().when('old_password', {
+        is: null,
+        then: Joi.optional(),
+        otherwise: Joi.string(),
+      }),
+      password_confirmation: Joi.string().when('password', {
+        is: null,
+        then: Joi.optional(),
+        otherwise: Joi.string().valid(Joi.ref('password')),
+      }),
+      age: Joi.number(),
+      weight: Joi.number(),
+      ethnicity: Joi.string(),
+    },
+  }),
+  usersController.update,
+);
+
 export default usersRouter;

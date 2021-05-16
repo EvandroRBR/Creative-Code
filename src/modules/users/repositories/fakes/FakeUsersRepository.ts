@@ -49,6 +49,14 @@ class FakeUsersRepository implements IUsersRepository {
   async findByCpf(cpf: string): Promise<User | undefined> {
     return this.users.find(user => user.cpf === cpf);
   }
+
+  async update(user: User): Promise<User> {
+    const findIndex = this.users.findIndex(findUser => findUser.id === user.id);
+
+    this.users[findIndex] = user;
+
+    return user;
+  }
 }
 
 export default FakeUsersRepository;
