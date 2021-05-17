@@ -5,4 +5,6 @@ export default interface IAddressesRepository {
   create(addressData: ICreateAddressDTO): Promise<Address>;
   findAll(): Promise<Address[]>;
   findByCep(cep: string): Promise<Address | undefined>;
+  findById(id: string): Promise<Address | undefined>;
+  delete(address: Address): Promise<void>;
 }

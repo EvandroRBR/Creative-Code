@@ -10,7 +10,7 @@ const addressesController = new AddressesController();
 
 addressesRouter.use(ensuredAuthenticated);
 
-addressesRouter.get('/', addressesController.index);
+addressesRouter.get('/', addressesController.show);
 
 addressesRouter.get('/:cep', addressesController.index);
 
@@ -29,5 +29,7 @@ addressesRouter.post(
   }),
   addressesController.create,
 );
+
+addressesRouter.delete('/:id', addressesController.delete);
 
 export default addressesRouter;

@@ -63,7 +63,7 @@ export default class CreateAddresses1621188897385
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_id'],
-            onDelete: 'SET NULL',
+            onDelete: 'CASCADE',
           },
         ],
       }),

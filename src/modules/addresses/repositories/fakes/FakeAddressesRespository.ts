@@ -41,6 +41,18 @@ class FakeAddressesRepository implements IAddressesRepository {
   public async findByCep(cep: string): Promise<Address | undefined> {
     return this.addresses.find(address => address.cep === cep);
   }
+
+  public async findById(id: string): Promise<Address | undefined> {
+    return this.addresses.find(address => address.id === id);
+  }
+
+  public async delete(address: Address): Promise<void> {
+    const findIndex = this.addresses.findIndex(
+      deleteAddress => deleteAddress.id === address.id,
+    );
+
+    this.addresses.splice(findIndex, 1);
+  }
 }
 
 export default FakeAddressesRepository;
