@@ -10,6 +10,8 @@ const addressesController = new AddressesController();
 
 addressesRouter.use(ensuredAuthenticated);
 
+addressesRouter.get('/', addressesController.index);
+
 addressesRouter.post(
   '/',
   celebrate({

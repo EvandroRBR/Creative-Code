@@ -29,10 +29,13 @@ class FakeAddressesRepository implements IAddressesRepository {
       type,
     });
 
-    console.log(address);
     this.addresses.push(address);
 
     return address;
+  }
+
+  public async findAll(): Promise<Address[]> {
+    return this.addresses;
   }
 }
 

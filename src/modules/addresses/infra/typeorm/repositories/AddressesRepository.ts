@@ -19,6 +19,12 @@ class AddressesRepository implements IAddressesRepository {
 
     return address;
   }
+
+  public async findAll(): Promise<Address[]> {
+    const address = await this.ormRepository.find({ relations: ['user_id'] });
+
+    return address;
+  }
 }
 
 export default AddressesRepository;

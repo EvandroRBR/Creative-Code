@@ -4,7 +4,7 @@ import ListUsersService from '../ListUsersService';
 let fakeUsersRepository: FakeUsersRepository;
 let listUsers: ListUsersService;
 
-describe('ListUser', () => {
+describe('ListUsers', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
 
