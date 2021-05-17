@@ -4,9 +4,19 @@ import { container } from 'tsyringe';
 
 import CreateAddressService from '@modules/addresses/services/CreateAddressesService';
 import ListAdressesService from '@modules/addresses/services/ListAdressesService';
+import FindAddressByCepService from '@modules/addresses/services/FindAddressByCepService';
 
-export default class UsersController {
+export default class AddressController {
   public async index(request: Request, response: Response): Promise<Response> {
+    const { cep } = request.params;
+    const listAddresses = container.resolve(FindAddressByCepService);
+
+    const address = await listAddresses.execute(cep);
+
+    return response.json(address);
+  }
+
+  public async show(request: Request, response: Response): Promise<Response> {
     const listAddresses = container.resolve(ListAdressesService);
 
     const address = await listAddresses.execute();

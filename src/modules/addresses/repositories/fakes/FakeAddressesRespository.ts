@@ -37,6 +37,10 @@ class FakeAddressesRepository implements IAddressesRepository {
   public async findAll(): Promise<Address[]> {
     return this.addresses;
   }
+
+  public async findByCep(cep: string): Promise<Address | undefined> {
+    return this.addresses.find(address => address.cep === cep);
+  }
 }
 
 export default FakeAddressesRepository;

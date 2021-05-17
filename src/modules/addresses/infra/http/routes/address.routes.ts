@@ -12,6 +12,8 @@ addressesRouter.use(ensuredAuthenticated);
 
 addressesRouter.get('/', addressesController.index);
 
+addressesRouter.get('/:cep', addressesController.index);
+
 addressesRouter.post(
   '/',
   celebrate({
