@@ -15,10 +15,6 @@ class Address {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  user_id: User;
-
   @Column()
   street: string;
 
@@ -45,6 +41,11 @@ class Address {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  @Column()
+  user_id: User;
 }
 
 export default Address;

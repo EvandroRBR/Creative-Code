@@ -12,7 +12,15 @@ addressesRouter.use(ensuredAuthenticated);
 
 addressesRouter.get('/', addressesController.show);
 
-addressesRouter.get('/:cep', addressesController.index);
+addressesRouter.get(
+  '/:cep',
+  celebrate({
+    [Segments.PARAMS]: {
+      cep: Joi.string().required(),
+    },
+  }),
+  addressesController.index,
+);
 
 addressesRouter.post(
   '/',
@@ -28,6 +36,22 @@ addressesRouter.post(
     },
   }),
   addressesController.create,
+);
+
+addressesRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      street: Joi.string(),
+      number: Joi.number(),
+      complement: Joi.string(),
+      cep: Joi.string(),
+      city: Joi.string(),
+      state: Joi.string(),
+      type: Joi.string(),
+    },
+  }),
+  addressesController.update,
 );
 
 addressesRouter.delete('/:id', addressesController.delete);

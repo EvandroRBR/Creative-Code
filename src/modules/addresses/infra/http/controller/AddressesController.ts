@@ -5,6 +5,7 @@ import { container } from 'tsyringe';
 import CreateAddressService from '@modules/addresses/services/CreateAddressesService';
 import ListAdressesService from '@modules/addresses/services/ListAdressesService';
 import FindAddressByCepService from '@modules/addresses/services/FindAddressByCepService';
+import UpdateAddressService from '@modules/addresses/services/UpdateAddressService';
 import DeleteAddressService from '@modules/addresses/services/DeleteAddressService';
 
 export default class AddressController {
@@ -38,12 +39,29 @@ export default class AddressController {
     return response.json(address);
   }
 
+  public async update(request: Request, response: Response): Promise<Response> {
+    const addressData = request.body;
+    const addressId = request.params.id;
+    const userId = request.user.id;
+
+    Object.assign(addressData, { addressId, userId });
+
+    console.log(addressData);
+
+    const updateAddress = container.resolve(UpdateAddressService);
+
+    const address = await updateAddress.execute(addressData);
+
+    return response.json(address);
+  }
+
   public async delete(request: Request, response: Response): Promise<Response> {
-    const AddressId = request.params.id;
+    const addressId = request.params.id;
+    const userId = request.user.id;
 
-    const createAddress = container.resolve(DeleteAddressService);
+    const deleteAddress = container.resolve(DeleteAddressService);
 
-    await createAddress.execute(AddressId);
+    await deleteAddress.execute(addressId, userId);
 
     return response.json({ message: 'Address was deleted' });
   }

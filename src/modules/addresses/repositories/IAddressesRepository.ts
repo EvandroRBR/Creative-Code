@@ -6,5 +6,6 @@ export default interface IAddressesRepository {
   findAll(): Promise<Address[]>;
   findByCep(cep: string): Promise<Address | undefined>;
   findById(id: string): Promise<Address | undefined>;
+  update(addressData: Address): Promise<Address>;
   delete(address: Address): Promise<void>;
 }

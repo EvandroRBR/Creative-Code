@@ -46,6 +46,16 @@ class FakeAddressesRepository implements IAddressesRepository {
     return this.addresses.find(address => address.id === id);
   }
 
+  async update(address: Address): Promise<Address> {
+    const findIndex = this.addresses.findIndex(
+      findAddress => findAddress.id === address.id,
+    );
+
+    this.addresses[findIndex] = address;
+
+    return address;
+  }
+
   public async delete(address: Address): Promise<void> {
     const findIndex = this.addresses.findIndex(
       deleteAddress => deleteAddress.id === address.id,
